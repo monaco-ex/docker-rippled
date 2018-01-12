@@ -12,5 +12,6 @@ RUN yumdownloader --enablerepo=ripple-stable --releasever=el7 rippled
 RUN rpm --import https://mirrors.ripple.com/rpm/RPM-GPG-KEY-ripple-release && rpm -K rippled*.rpm
 RUN alien -i --scripts rippled*.rpm && rm rippled*.rpm
 
-EXPOSE 51235 5006
+# 31235 is for GKE's LoadBalancer.
+EXPOSE 31235 51235 5006
 ENTRYPOINT ["/opt/ripple/bin/rippled"]
